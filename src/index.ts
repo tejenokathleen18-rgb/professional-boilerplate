@@ -10,8 +10,10 @@ import {
 } from './middleware/security';
 import { requestLoggingMiddleware } from './middleware/requestLogger';
 import { errorHandler, notFoundHandler } from './middleware/errorHandler';
+
 import { userRoutes } from './routes/userRoutes';
 import { healthRoutes } from './routes/healthRoutes';
+import { authRoutes } from './routes/authRoutes';
 
 const app = express();
 
@@ -24,6 +26,7 @@ app.use('/api/', apiLimiter);
 app.use(requestLoggingMiddleware);
 
 app.use('/health', healthRoutes);
+app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
 
 app.use(notFoundHandler);
